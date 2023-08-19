@@ -74,7 +74,7 @@ const callbacks: Partial<CallbacksOptions<Profile, Account>> = {
   },
 };
 
-const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions & { skipCSRFCheck: boolean } = {
   session: { strategy: "jwt" },
   debug: false, // if you want to debug
   secret: process.env.NEXTAUTH_SECRET,
@@ -112,6 +112,7 @@ const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  skipCSRFCheck: true,
 };
 
 const handler = NextAuth(authOptions);
